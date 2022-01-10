@@ -32,12 +32,12 @@ function FormCheckbox({ field, form, options, label }) {
         ))
         ) : (
         <div>
-            <input {...field} type="checkbox" id={field.name} />
+            <input {...field} className="mr-4" type="checkbox" id={field.name} />
             <label for={field.name}>{label}</label>
         </div>
         )}
 
-        {errors[field.name] ? <p>{errors[field.name]}</p> : null}
+        {errors[field.name] ? <p className="text-[15px]">{errors[field.name]}</p> : null}
     </>
     );
 }

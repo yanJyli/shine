@@ -3,5 +3,7 @@
 @tailwind utilities;
 
 body {
-  background-image: url('./components/img/back/pngwing.com.png');
+  background-image: url('./components/img/back/pngwing.com.png') ;
+  background-repeat: repeat-x;
+  font-family: Arial, sans-serif;
 }
