@@ -12,13 +12,13 @@ export default class Heder extends Component {
                 <div className='bg-amber-50 opacity-80 max-w-screen-lg grid mx-auto border border-white-300 '>
                     <ul className='list-none text-center text-2xl m-2 '>
                         <li className='cursor-pointer hover:bg-amber-100 inline-block mr-10 '>
-                            <Link to="/">Главная</Link>
+                            <Link to="/yanJyli/shine/">Главная</Link>
                         </li>
                         <li className='cursor-pointer hover:bg-amber-100 inline-block mr-10 '>
-                            <Link to="/collections">Коллекции</Link>
+                            <Link to="/yanJyli/shine/collections">Коллекции</Link>
                         </li>
                         <li className='cursor-pointer hover:bg-amber-100 inline-block mr-10 '>
-                            <Link to="/reg">Личный кабинет</Link>
+                            <Link to="/yanJyli/shine/reg">Личный кабинет</Link>
                         </li>
                     </ul>
                 </div>
