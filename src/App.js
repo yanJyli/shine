@@ -10,10 +10,10 @@ export default class App extends Component {
   render() {
     return (
       <Routes>
-        <Route path='/yanJyli/shine' element={<MainPage />} />
-        <Route path='/yanJyli/shine/reg' element={<AccountPageForm />} />
-        <Route path='/yanJyli/shine/account' element={<AccountPage />} />
-        <Route path='/yanJyli/shine/collections' element={<CollectionPage />} />
+        <Route path='/shine' element={<MainPage />} />
+        <Route path='/shine/reg' element={<AccountPageForm />} />
+        <Route path='/shine/account' element={<AccountPage />} />
+        <Route path='/shine/collections' element={<CollectionPage />} />
       </Routes>
     )
   }
