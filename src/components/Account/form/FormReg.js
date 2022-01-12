@@ -35,7 +35,7 @@ export default class FormReg extends Component {
                 <Field name="email" component={FormInput} label="Введите еmail"/>
                 <Field name="password" component={FormInput} label="Введите пароль" type="password"/>
                 <Field name="repeatPassword" component={FormInput} label="Повторите пароль" type="password"/>
-                <Field component={FormCheckbox} label="Вы принимаете условия и политику использования данных" name="termsAndConditions" className='hover:bg-amber-50'/>
+                <Field component={FormCheckbox} label="Вы принимаете наши условия и политику использования данных" name="termsAndConditions" className='hover:bg-amber-50'/>
                 <button className=' m-2 border rounded border-gray-300 w-min px-2 hover:bg-amber-50' type="submit"  disabled={!isValid}>Регистрация</button>
             </Form>)}
         </Formik>

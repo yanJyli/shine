@@ -19,7 +19,7 @@ export default class AccountPage extends Component {
             <>
                 <Header />
                 <div className='bg-white opacity-90 max-w-screen-lg grid mx-auto'>
-                <ul className='list-none text-left text-xl m-2 w-fit'>
+                    <ul className='list-none text-left text-xl m-2 w-fit'>
                         {accountListPage}
                     </ul>
                 </div>
