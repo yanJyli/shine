@@ -10,10 +10,10 @@ export default class App extends Component {
   render() {
     return (
       <Routes>
-        <Route path='/shine' element={<MainPage />} />
-        <Route path='/shine/reg' element={<AccountPageForm />} />
-        <Route path='/shine/account' element={<AccountPage />} />
-        <Route path='/shine/collections' element={<CollectionPage />} />
+        <Route path='/' element={<MainPage />} />
+        <Route path='/reg' element={<AccountPageForm />} />
+        <Route path='/account' element={<AccountPage />} />
+        <Route path='/collections' element={<CollectionPage />} />
       </Routes>
     )
   }
