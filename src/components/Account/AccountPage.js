@@ -1,30 +1,15 @@
 import React, { Component } from 'react';
-
-import Header from '../Header';
-
-import Footer from '../Footer';
+import { signOut } from "firebase/auth";
+import {auth} from '../../firebase';
 
 export default class AccountPage extends Component {
-    constructor() {
-        super();
-
-        this.state = {
-        accountList: ['Мои товары', 'Корзина', 'Выход']}
-    }
     render() {
-        const { accountList } = this.state;
-
-        const accountListPage = accountList.map((item) => {return <li key={item} className='cursor-pointer pr-10 hover:bg-amber-50'>{item}</li>})
-        return (
-            <>
-                <Header />
-                <div className='bg-white opacity-90 max-w-screen-lg grid mx-auto'>
-                    <ul className='list-none text-left text-xl m-2 w-fit'>
-                        {accountListPage}
-                    </ul>
-                </div>
-                <Footer />
-            </>
-        )
+        return <>
+                    <div className='bg-white opacity-90 max-w-screen-lg grid mx-auto'>
+                        <button className='cursor-pointer hover:bg-amber-10 0text-left text-xl m-2 w-fit inline-block mr-10'> Мои товары </button>
+                        <button className='cursor-pointer hover:bg-amber-10 0text-left text-xl m-2 w-fit inline-block mr-10'>Корзина</button>
+                        <button onClick={() => signOut(auth)} className='cursor-pointer hover:bg-amber-10 0text-left text-xl m-2 w-fit inline-block mr-10'>Выйти</button>
+                    </div>
+        </>
     }
 }

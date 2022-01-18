@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export default function Post({ src, text, caption, right }) {
     return (
@@ -8,4 +9,13 @@ export default function Post({ src, text, caption, right }) {
             
         </div>
     )
+}
+
+Image.defaultProps = {
+    caption: 'No caption',
+};
+Post.propTypes = {
+    src: PropTypes.string.isRequired,
+    caption: PropTypes.string,
+    text: PropTypes.string.isRequired,
 }

@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+
 export default class Heder extends Component {
 
     render() {
+        
         return (
             <>               
                 <div className='bg-amber-100 h-16 text-center '>
@@ -10,7 +12,7 @@ export default class Heder extends Component {
                 </div>
                 
                 <div className='bg-amber-50 opacity-80 max-w-screen-lg grid mx-auto border border-white-300 '>
-                    <ul className='list-none text-center text-2xl m-2 '>
+                    <ul className='list-none text-center text-xl m-2 '>
                         <li className='cursor-pointer hover:bg-amber-100 inline-block mr-10 '>
                             <Link to="/">Главная</Link>
                         </li>
@@ -18,7 +20,7 @@ export default class Heder extends Component {
                             <Link to="/collections">Коллекции</Link>
                         </li>
                         <li className='cursor-pointer hover:bg-amber-100 inline-block mr-10 '>
-                            <Link to="/reg">Личный кабинет</Link>
+                            <Link to="/account">Личный кабинет</Link>
                         </li>
                     </ul>
                 </div>
