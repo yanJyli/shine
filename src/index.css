@@ -7,3 +7,30 @@ body {
   background-repeat: repeat-x;
   font-family: Arial, sans-serif;
 }
+
+::-webkit-scrollbar-button {
+width:5px;
+height:0px
+}
+
+::-webkit-scrollbar-track {
+  background-color:#ffe2c6;
+  }
+
+::-webkit-scrollbar-thumb {
+border-radius: 0px;
+background-color:rgb(250, 214, 160);
+}
+
+::-webkit-scrollbar-thumb:hover{
+background-color:#f8f8f8;
+}
+
+::-webkit-resizer{
+width:4px;
+height:0px
+}
+
+::-webkit-scrollbar{
+width: 4px;
+}
