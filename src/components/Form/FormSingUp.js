@@ -10,7 +10,6 @@ import FormInput from './FormInput';
 const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
 export default class FormSingUp extends Component {
-
     
     hendleSubmit = (values) => {
         createUserWithEmailAndPassword(auth, values.email, values.password).then(

@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 export default class Heder extends Component {
-
     render() {
-        
         return (
             <>               
                 <div className='bg-amber-100 h-16 text-center '>

@@ -7,7 +7,6 @@ import AccountPage from './AccountPage';
 import Footer from '../Footer';
 
 export default class Account extends Component {
-
     render() {
         const { currentUser } = this.props;
         return (
