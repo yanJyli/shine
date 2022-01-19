@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/shine/static/css/main.e87ceee7.css",
-    "main.js": "/shine/static/js/main.88ac45e9.js",
+    "main.css": "/shine/static/css/main.0f09a9fe.css",
+    "main.js": "/shine/static/js/main.39ad16ae.js",
     "static/media/pngwing.com.png": "/shine/static/media/pngwing.com.5e9087cfb5c84d7cd85e.png",
     "static/media/main2.png": "/shine/static/media/main2.fbd1cc2e56080620407f.png",
     "static/media/main3.png": "/shine/static/media/main3.79d4db89097c9ef3d33b.png",
@@ -9,12 +9,11 @@
     "static/media/heart-thin.svg": "/shine/static/media/heart-thin.3d4daea18e994e1780372f50f9f79c45.svg",
     "index.html": "/shine/index.html",
     "static/media/instagram-comment.svg": "/shine/static/media/instagram-comment.95ccce546541668fcc76379ecb8ce05d.svg",
-    "static/media/instagram-share.svg": "/shine/static/media/instagram-share.9cd5dcdc8344747bce7049486c859444.svg",
-    "main.e87ceee7.css.map": "/shine/static/css/main.e87ceee7.css.map",
-    "main.88ac45e9.js.map": "/shine/static/js/main.88ac45e9.js.map"
+    "main.0f09a9fe.css.map": "/shine/static/css/main.0f09a9fe.css.map",
+    "main.39ad16ae.js.map": "/shine/static/js/main.39ad16ae.js.map"
   },
   "entrypoints": [
-    "static/css/main.e87ceee7.css",
-    "static/js/main.88ac45e9.js"
+    "static/css/main.0f09a9fe.css",
+    "static/js/main.39ad16ae.js"
   ]
 }
