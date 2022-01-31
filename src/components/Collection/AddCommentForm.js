@@ -33,7 +33,7 @@ export default class AddComment extends Component {
     }
     render() {
         const {commentInput} = this.props;
-        const {comment} = this.props;
+        const {comment} = this.state;
 
         return (
             <form className='flex ' onSubmit={this.handleSubmit}>
@@ -47,5 +47,4 @@ export default class AddComment extends Component {
 
 AddComment.propTypes = {
     commentInput: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
-    onSubmit: PropTypes.func.isRequired
 }

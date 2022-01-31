@@ -2,21 +2,26 @@ import React, { Component } from 'react';
 import * as Yup from 'yup';
 import {Formik, Form, Field} from 'formik';
 
-import {auth} from '../../firebase';
+import {auth, db} from '../../firebase';
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore"; 
 
 import FormInput from './FormInput';
 
 const passwordRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
 
-export default class FormSingUp extends Component {
-    
+export default class FormSingUp extends Component {    
     hendleSubmit = (values) => {
         createUserWithEmailAndPassword(auth, values.email, values.password).then(
-            
-            (user) => {updateProfile(auth.currentUser, {displayName: values.username})}
+            async () => {
+                await updateProfile(auth.currentUser, { displayName: values.username });
+                
+                setDoc(doc(db, 'users', values.username), {
+                    username: values.username,
+                });
+            }
         );
-    }
+    }    
     render() {
         return <Formik initialValues={{ username:"", email:"", password:""}} onSubmit={this.hendleSubmit}
 

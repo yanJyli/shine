@@ -11,13 +11,13 @@ export default class Heder extends Component {
                 
                 <div className='bg-amber-50 opacity-80 max-w-screen-lg grid mx-auto border border-white-300 '>
                     <ul className='list-none text-center text-[22px] m-2 '>
-                        <li className='cursor-pointer hover:bg-amber-100 inline-block mr-10 '>
+                        <li className='cursor-pointer hover:bg-amber-100 inline-block mr-10 px-2'>
                             <Link to="/">Главная</Link>
                         </li>
-                        <li className='cursor-pointer hover:bg-amber-100 inline-block mr-10 '>
+                        <li className='cursor-pointer hover:bg-amber-100 inline-block mr-8 px-2'>
                             <Link to="/collections">Коллекции</Link>
                         </li>
-                        <li className='cursor-pointer hover:bg-amber-100 inline-block mr-10 '>
+                        <li className='cursor-pointer hover:bg-amber-100 inline-block  px-2'>
                             <Link to="/account">Личный кабинет</Link>
                         </li>
                     </ul>

@@ -9,7 +9,7 @@ export default class Comments extends Component {
     return (
         <div className="p-4 pt-0">
         {comments.map((comment) => (
-            <p className="mb-1">
+            <p key={comment.i} className="mb-1">
                 <span className="font-bold mr-1">{comment.username}</span>
                 <span>{comment.text}</span>
             </p>
@@ -17,7 +17,7 @@ export default class Comments extends Component {
 
         <AddCommentForm commentInput={commentInput} onSubmit={onAddComment} />
         </div>
-        );
+        ); 
     }
 }
 

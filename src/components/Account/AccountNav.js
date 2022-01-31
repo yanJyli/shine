@@ -1,18 +1,21 @@
 import React, { Component } from 'react';
 import { signOut } from "firebase/auth";
 import {auth} from '../../firebase';
-
+import PropTypes from 'prop-types';
 export default class AccountNav extends Component {
     render() {
-        const { currentUser } = this.props;
+        const { onClickProducts, onClickBasket} = this.props;
         return <>
-                    <div className='grid border px-4 py-2 w-fit'>
-                        <p className='text-xl m-2'>Здравствуйте, {currentUser}</p>
-                        <button className='cursor-pointer hover:bg-amber-10 0text-left text-xl m-2 w-fit inline-block mr-10'>Мои товары</button>
-                        <button className='cursor-pointer hover:bg-amber-10 0text-left text-xl m-2 w-fit inline-block mr-10'>Корзина</button>
-                        <button className='cursor-pointer hover:bg-amber-10 0text-left text-xl m-2 w-fit inline-block mr-10'>Настройки</button>
-                        <button onClick={() => signOut(auth)} className='cursor-pointer hover:bg-amber-10 0text-left text-xl m-2 w-fit inline-block mr-10'>Выйти</button>
-                    </div>
+            <div className='border p-4 grid text-xl'>                        
+                <button onClick={onClickProducts} className='text-left w-fit cursor-pointer hover:bg-amber-50 p-2'>Избранные</button>
+                <button onClick={onClickBasket} className='text-left w-fit cursor-pointer hover:bg-amber-50 p-2'>Корзина</button>
+                <button onClick={() => signOut(auth)} className='text-left w-fit cursor-pointer hover:bg-amber-50 p-2'>Выйти</button>
+            </div>
         </>
     }
+}
+
+AccountNav.propTypes = {
+    onClickProducts: PropTypes.func.isRequired,
+    onClickBasket: PropTypes.func.isRequired,
 }

@@ -14,6 +14,7 @@ import Img8 from '../img/post/8.png';
 import Img9 from '../img/post/9.png';
 export default class MainPage extends Component {
     render() {
+        
         return (
             <>
                 <Header />
