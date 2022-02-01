@@ -4,39 +4,38 @@ import PropTypes from 'prop-types';
 import Actions from './Actions';
 import Comments from './Comments';
 
+import clothesCollection from '../../services/collection-services';
 export default class CollectionPost extends Component {
     constructor(props) {
         super(props);
         
-        this.commentInputRef = React.createRef();
+        this.commentInputRef = React.createRef()
+    }
+
+    handleCommentClickFocus = () => {
+        this.commentInputRef.current.focus()
     }
 
     handleLikeClick = () => {
-        const {collection} = this.props;
-        this.setState({
-            collection: {
-            ...collection.item,  
-            likes: this.state.likes + 1,
-        },
-        })
-    }
+        const { item, currentUser } = this.props;
 
-    handleCommentClick = () => {
-        this.commentInputRef.current.focus();
-    }
+        clothesCollection.likePost(item, currentUser.displayName)
+    }    
 
-    handleAddComment = (text) => {
-        const {collection} = this.props;
-        this.setState({
-            collection:{
-            ...collection,  
-            comments: [...collection, {text, username: 'yanJyli'}],
-        },
+    handleSubmitComment = (text) => {
+        const { currentUser, item } = this.props;
+    
+        clothesCollection.addComment(item, {
+            username: currentUser.displayName,
+            text,
         })
     }
 
     render() {
-        const {item, onClick } = this.props;
+        const { item, onClick } = this.props;
+        if (!item) {
+            return <div className="loader"></div>
+        }
         return (
             <div className='bg-white max-w-screen-lg grid mx-auto '> 
                 <div className='m-4 '>
@@ -46,27 +45,35 @@ export default class CollectionPost extends Component {
                         <img key={i.id} src={`${process.env.PUBLIC_URL}/${i.src}`} id={i.id} alt='img' onClick={() => onClick(i.src)} className='w-1/4 p-1'/>
                         
                     ))}</div>
-                    <Actions likes={item.likes} onLikeClick={this.handleLikeClick} onCommentClick={this.handleCommentClick}/>
-                    <Comments comments={item.comments} commentInput={this.commentInputRef} onAddComment={this.handleAddComment}/>
+                    <Actions likes={item.likes} onLikeClick={this.handleLikeClick} onCommentClick={this.handleCommentClickFocus}/>
+                    <Comments comments={item.comments} commentInput={this.commentInputRef} onAddComment={this.handleSubmitComment}/>
                 </div>
             </div>
         )
     }
 }
 
+CollectionPost.defaultProps = {
+    item: null,
+    currentUser: null,
+}
+
 CollectionPost.propTypes = {
     onClick: PropTypes.func.isRequired,
     item: PropTypes.shape({
-        title: PropTypes.string.isRequired,
-        caption: PropTypes.string.isRequired,
+        title: PropTypes.string,
+        caption: PropTypes.string,
         img: PropTypes.shape({
-            src: PropTypes.string.isRequired,
-            id: PropTypes.string.isRequired,
-        }).isRequired,
-        likes: PropTypes.number.isRequired,
+            src: PropTypes.string,
+            id: PropTypes.string,
+        }),
+        likes: PropTypes.number,
         comments: PropTypes.shape({
-            text: PropTypes.string.isRequired,
-            username: PropTypes.string.isRequired,
-        }).isRequired,
-    }).isRequired,
+            text: PropTypes.string,
+            username: PropTypes.string,
+        }),
+    }),
+    currentUser: PropTypes.shape({
+        username: PropTypes.string,
+    })
 }

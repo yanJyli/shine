@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import PropTypes from 'prop-types';
 
 import AccountNav from './AccountNav';
 import MyProducts from './MyProducts';
@@ -32,14 +32,34 @@ export default class AccountPage extends Component {
     }
     
     render() {        
-        const {favoritesClothes, oderClothes} = this.props;
-        return <>
+        const {favoritesClothes, oderClothes, currentUser} = this.props;
+        return (
             <div className='bg-white max-w-screen-lg flex mx-auto '>
                 <AccountNav onClickProducts={this.handleClickProducts} onClickBasket={this.handleClickBasket}/>
-                {this.state.addStart && <div className=' w-full text-center text-xl m-4'>Добро пожаловать в личный кабинет!</div>}
+                {this.state.addStart && <div className=' w-full text-center text-xl m-4'>Добро пожаловать в личный кабинет, {currentUser.displayName}!</div>}
                 {this.state.addProducts && <MyProducts favoritesClothes={favoritesClothes}/>}
                 {this.state.addBasket && <MyBasket oderClothes={oderClothes}/>}
             </div>
-        </>
+        )
     }
+}
+
+AccountPage.defaultProps = {
+    favoritesClothes: null,
+    oderClothes: null,
+    currentUser: null,
+}
+
+AccountPage.propTypes = {
+
+    favoritesClothes: PropTypes.shape({
+        username: PropTypes.string,
+            src: PropTypes.string,
+            titleToOne: PropTypes.string,
+            price: PropTypes.string,
+            size: PropTypes.string,
+    }),
+    currentUser: PropTypes.shape({
+        username: PropTypes.string,
+    })
 }

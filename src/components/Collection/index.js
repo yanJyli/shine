@@ -6,8 +6,6 @@ import Header from '../Header';
 import CollectionPost from './CollectionPost';
 import ProductModalPage from './ProductModalPage';
 import Footer from '../Footer';
-
-
 export default class CollectionPage extends Component {
     constructor(props) {
         super(props);
@@ -34,14 +32,14 @@ export default class CollectionPage extends Component {
 
     render() {
         const { productData, productImage} = this.state;
-        const { currentUser, dress, suit, sport} = this.props;
+        const { currentUser, dress, suit, sport } = this.props;
         return (
             <>
                 <Header />
-                <CollectionPost item={dress} onClick={(img) => this.handleModalPage(dress, img)} />
-                <CollectionPost item={suit} onClick={(img) => this.handleModalPage(suit, img)}/>
-                <CollectionPost item={sport} onClick={(img) => this.handleModalPage(sport, img)}/>
-                { currentUser ? ( this.state.addModalPage && <ProductModalPage onClose={this.onClose} item={productData} imgRefSrc={productImage}/> ) : null}
+                <CollectionPost item={dress} onClick={(img) => this.handleModalPage(dress, img)} currentUser={currentUser}/>
+                <CollectionPost item={suit} onClick={(img) => this.handleModalPage(suit, img)} currentUser={currentUser}/>
+                <CollectionPost item={sport} onClick={(img) => this.handleModalPage(sport, img)} currentUser={currentUser}/>
+                { currentUser ? ( this.state.addModalPage && <ProductModalPage currentUser={currentUser} onClose={this.onClose} item={productData} imgRefSrc={productImage}/> ) : null}
                 
                 <Footer />
             </>
@@ -49,4 +47,55 @@ export default class CollectionPage extends Component {
     }
 }
 
+CollectionPage.defaultProps = {
+    currentUser: null,
+    dress: null,
+    suit: null,
+    sport: null,
+}
+
+CollectionPage.propTypes = {
+    currentUser: PropTypes.shape({
+        username: PropTypes.string,
+    }),
+    dress: PropTypes.shape({
+        title: PropTypes.string,
+        caption: PropTypes.string,
+        img: PropTypes.shape({
+            src: PropTypes.string,
+            id: PropTypes.string,
+        }),
+        likes: PropTypes.number,
+        comments: PropTypes.shape({
+            text: PropTypes.string,
+            username: PropTypes.string,
+        }),
+    }),
+    suit: PropTypes.shape({
+        title: PropTypes.string,
+        caption: PropTypes.string,
+        img: PropTypes.shape({
+            src: PropTypes.string,
+            id: PropTypes.string,
+        }),
+        likes: PropTypes.number,
+        comments: PropTypes.shape({
+            text: PropTypes.string,
+            username: PropTypes.string,
+        }),
+    }),
+    sport: PropTypes.shape({
+        title: PropTypes.string,
+        caption: PropTypes.string,
+        img: PropTypes.shape({
+            src: PropTypes.string,
+            id: PropTypes.string,
+        }),
+        likes: PropTypes.number,
+        comments: PropTypes.shape({
+            text: PropTypes.string,
+            username: PropTypes.string,
+        }),
+    }),
+}
 

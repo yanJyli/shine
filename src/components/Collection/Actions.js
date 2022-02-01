@@ -23,7 +23,7 @@ export default class Actions extends Component {
 }
 
 Actions.propTypes = {
-    likes: PropTypes.number.isRequired,
+    likes: PropTypes.string.isRequired,
     onCommentClick: PropTypes.func.isRequired,
     onLikeClick: PropTypes.func.isRequired,
 }

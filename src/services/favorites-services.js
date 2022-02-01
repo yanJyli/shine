@@ -1,4 +1,5 @@
 import Collection from './services';
+import { where } from 'firebase/firestore';
 
 export class FavoritesCollection extends Collection {
     constructor() {
@@ -11,8 +12,8 @@ export class FavoritesCollection extends Collection {
         return this.readDocument(id);
     }
 
-    getAllCollection(arr) {
-        return this.readAllDocument(arr);
+    getCollectionByUsername(username) {
+        return this.getDocuments(where('username', '==', username));
     }
 }
 

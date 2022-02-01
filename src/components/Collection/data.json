@@ -44,7 +44,8 @@
         "img": [
             {"src":"collection/sport/1.jpg", "id":31},
             {"src":"collection/sport/2.jpg", "id":32},
-            {"src":"collection/sport/3.jpg", "id":33}
+            {"src":"collection/sport/3.jpg", "id":33},
+            {"src":"collection/sport/4.jpg", "id":34}
         ],
         "likes": "10",
         "comments": [

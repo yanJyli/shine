@@ -9,6 +9,7 @@ export default class Collection {
 
     return setDoc(doc(db, this.collectionName, id), data);
   }
+  
 
   async readDocument(id) {
     const docRef = doc(db, this.collectionName, id);
@@ -19,16 +20,6 @@ export default class Collection {
     }
 
     return null;
-  }
-
-  async readAllDocument(arr) { 
-    const q = query(collection(db, this.collectionName), where("src", "==", true))
-
-    const querySnapshot = await getDocs(q)
-    querySnapshot.forEach((doc) => {
-      arr.push(doc.data())
-    })
-    return arr
   }
 
   updateDocument(id, data) {

@@ -26,6 +26,12 @@ export default class ProductModalPage extends Component {
         
     }
 
+    handleSizeClick = (id) => {
+        this.setState({
+            sizeId: id   
+        })
+    } 
+
     handleCloseTable = () => {
         this.setState({
             showTable: !this.state.showTable    
@@ -33,31 +39,29 @@ export default class ProductModalPage extends Component {
     }
 
     handleMooveToFavorites = () => {
-        const {item, imgRefSrc} = this.props;
+        const {item, imgRefSrc, currentUser} = this.props;
 
         favoritesCollection.createDocument({
+            username: currentUser.displayName,
             src: imgRefSrc,
             titleToOne: item.titleToOne,
+            price: item.price,
             size: this.state.sizeId
         }, )
         
         this.setState({
             showAnswerToFavorites: !this.state.showAnswerToFavorites    
         })
-    }
-
-    handleSizeClick = (id) => {
-        this.setState({
-            sizeId: id   
-        })
-    } 
+    }    
 
     handleMooveToBasket = () => {
-        const {item, imgRefSrc} = this.props;
+        const {item, imgRefSrc, currentUser} = this.props;
 
         oderCollection.createDocument({
+            username: currentUser.displayName,
             src: imgRefSrc,
             titleToOne: item.titleToOne,
+            price: item.price,
             size: this.state.sizeId
         }, )
         
@@ -69,14 +73,14 @@ export default class ProductModalPage extends Component {
     render() {
         const {item, imgRefSrc, onClose} = this.props;
         const {size} = this.state;
-        return (
-            <>
+        return (            
                 <div className='bg-gray-400/50 w-full h-full fixed top-0 left-0 flex items-center justify-center' >
                     <div className='bg-white flex w-3/4 '>
-                        <img src={imgRefSrc} alt='img' className='w-1/3 mr-4 '/>
+                        <img src={imgRefSrc} alt='img' className='w-1/3 mr-4'/>
                         <div className='w-fit '>
-                            <p className='m-2 text-lg'>{item.titleToOne}</p>
+                            <p className='m-2 text-lg'>{`${item.titleToOne}, ${item.price}`}</p>
                             <p className='m-2'>{item.caption}</p> 
+
                             <div className='m-2 '>
                                 <p className='mb-2'>Выберете размер:</p>
                                 <div className=''>                                
@@ -85,19 +89,20 @@ export default class ProductModalPage extends Component {
                                     {size.map((i) => (                                  
                                         <button onClick={() => this.handleSizeClick(i.id)} className='border px-2 hover:bg-amber-50'>{i.id}</button>
                                     ))}
-                                    {this.state.showTable && <img src={tableImg} alt='img' onClick={this.handleCloseTable} className='w-1/2'/> }
+                                    
                                 </div>
                             </div>
-                            <button onClick={this.handleMooveToBasket} className='m-2 border rounded px-2 hover:bg-amber-50'>Добавить в корзину</button>
-                            <button onClick={this.handleMooveToFavorites} className='m-2 border rounded px-2 hover:bg-amber-50'>Добавить в избранные товары</button>
-                            <button onClick={onClose} className=' m-2 border rounded px-2 hover:bg-gray-300'>Закрыть</button>
-                            
+                            <div className=''>
+                                <button onClick={this.handleMooveToBasket} className='m-2 border rounded px-2 hover:bg-amber-50'>Добавить в корзину</button>
+                                <button onClick={this.handleMooveToFavorites} className='m-2 border rounded px-2 hover:bg-amber-50'>Добавить в избранные товары</button>
+                                <button onClick={onClose} className=' m-2 border rounded px-2 hover:bg-gray-300'>Закрыть</button>
+                            </div>
+                            {this.state.showTable && <img src={tableImg} alt='img' onClick={this.handleCloseTable} className='w-1/2 my-2 mx-4'/> }
                             {this.state.showAnswerToFavorites && <p className='m-2'>Товар добавлен в избранные</p> }
                             {this.state.showAnswerToOder && <p className='m-2'>Товар добавлен в корзину</p> }
                         </div>
                     </div>
                 </div>
-            </>
         )
     }
 }

@@ -28,13 +28,13 @@ export default class Forms extends Component {
     } 
 
     render() {
-        return <>
-                    <div className='bg-white max-w-screen-lg  mx-auto text-center p-4'>
-                        <button onClick={this.addLogin} className='text-[20px] border px-4 py-2'>Вход</button>
-                        <button onClick={this.addSingUp}  className='text-[20px] border px-4 py-2'>Регистрация</button>
-                        {this.state.addFormLogin && <FormLogin />}
-                        {this.state.addFormSingUp && <FormSingUp />}
-                    </div> 
-            </>
+        return (
+            <div className='bg-white max-w-screen-lg  mx-auto text-center p-4'>
+                <button onClick={this.addLogin} className='text-[20px] border px-4 py-2'>Вход</button>
+                <button onClick={this.addSingUp}  className='text-[20px] border px-4 py-2'>Регистрация</button>
+                {this.state.addFormLogin && <FormLogin />}
+                {this.state.addFormSingUp && <FormSingUp />}
+            </div> 
+        )
     }
 }

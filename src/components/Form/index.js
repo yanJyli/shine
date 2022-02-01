@@ -22,4 +22,12 @@ export default class Login extends Component {
     }
 }
 
+Login.defaultProps = {
+    currentUser: null,
+}
 
+Login.propTypes = {
+    currentUser: PropTypes.shape({
+        username: PropTypes.string,
+    })
+}

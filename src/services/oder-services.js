@@ -1,5 +1,5 @@
 import Collection from './services';
-
+import { where } from 'firebase/firestore';
 export class OderCollection extends Collection {
     constructor() {
         super();
@@ -11,8 +11,8 @@ export class OderCollection extends Collection {
         return this.readDocument(id);
     }
 
-    getAllCollection(arr) {
-        return this.readAllDocument(arr);
+    getCollectionByUsername(username) {
+        return this.getDocuments(where('username', '==', username));
     }
 }
 
