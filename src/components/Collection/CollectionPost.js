@@ -42,7 +42,7 @@ export default class CollectionPost extends Component {
                     <p className='text-xl font-bold'>{item.title}</p>
                     <p className='text-base'>{item.caption}</p>
                     <div className='m-2 flex overflow-x-scroll '>{item.img.map((i) => (
-                        <img key={i.id} src={`${process.env.PUBLIC_URL}/${i.src}`} id={i.id} alt='img' onClick={() => onClick(i.src)} className='w-1/4 p-1'/>
+                        <img key={i.id} src={`${process.env.PUBLIC_URL}/${i.src}`} id={i.id} alt='img' onClick={() =>  onClick(i.src)} className='w-1/4 p-1'/>
                         
                     ))}</div>
                     <Actions likes={item.likes} onLikeClick={this.handleLikeClick} onCommentClick={this.handleCommentClickFocus}/>
@@ -63,11 +63,11 @@ CollectionPost.propTypes = {
     item: PropTypes.shape({
         title: PropTypes.string,
         caption: PropTypes.string,
-        img: PropTypes.shape({
+        img: PropTypes.objectOf({
             src: PropTypes.string,
             id: PropTypes.string,
         }),
-        likes: PropTypes.number,
+        likes: PropTypes.array,
         comments: PropTypes.shape({
             text: PropTypes.string,
             username: PropTypes.string,

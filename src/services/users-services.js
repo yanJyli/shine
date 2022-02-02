@@ -2,7 +2,7 @@ import Collection from './services';
 
 export class UsersCollection extends Collection {
   constructor() {
-    super();
+    super()
 
     this.collectionName = 'users';
   }
@@ -12,6 +12,6 @@ export class UsersCollection extends Collection {
   }
 }
 
-const usersCollection = new UsersCollection();
+const usersCollection = new UsersCollection()
 
-export default usersCollection;
+export default usersCollection

@@ -43,7 +43,7 @@ export default class MyBasket extends Component {
             ))}
             </div>)}
             
-            {oderClothes ? null : (
+            {!oderClothes ? null : (
               <div className='grid place-items-center'> 
                 <button onClick={this.handleModalPage} className='w-fit hover:bg-amber-50 p-2'>Оформить заказ</button>
                 {this.state.addModalPage  && <AccountModalPage onClose={this.onClose}/> }

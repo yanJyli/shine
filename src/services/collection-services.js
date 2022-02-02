@@ -1,20 +1,19 @@
 import { arrayUnion } from 'firebase/firestore';
-
 import Collection from './services';
 
 export class ClothesCollection extends Collection {
   constructor() {
-    super();
+    super()
 
     this.collectionName = 'collection';
   }
 
   getCollection(id) {
-    return this.readDocument(id);
+    return this.readDocument(id)
   }
 
   addComment(id, data) {
-    return this.updateDocument(id, { comments: arrayUnion(data) });
+    return this.updateDocument(id, { comments: arrayUnion(data) })
   }
 
   likePost(id, username) {
@@ -22,6 +21,6 @@ export class ClothesCollection extends Collection {
   }
 }
 
-const clothesCollection = new ClothesCollection();
+const clothesCollection = new ClothesCollection()
 
-export default clothesCollection;
+export default clothesCollection

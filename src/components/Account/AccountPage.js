@@ -37,7 +37,7 @@ export default class AccountPage extends Component {
             <div className='bg-white max-w-screen-lg flex mx-auto '>
                 <AccountNav onClickProducts={this.handleClickProducts} onClickBasket={this.handleClickBasket}/>
                 {this.state.addStart && <div className=' w-full text-center text-xl m-4'>Добро пожаловать в личный кабинет, {currentUser.displayName}!</div>}
-                {this.state.addProducts && <MyProducts favoritesClothes={favoritesClothes}/>}
+                {this.state.addProducts && <MyProducts favoritesClothes={favoritesClothes} currentUser={currentUser}/>}
                 {this.state.addBasket && <MyBasket oderClothes={oderClothes}/>}
             </div>
         )
