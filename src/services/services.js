@@ -9,7 +9,10 @@ export default class Collection {
 
     return setDoc(doc(db, this.collectionName, id), data)
   }
-  
+
+  createDocumentWithSpecifiedId(data, specifiedId) {
+    return setDoc(doc(db, this.collectionName, specifiedId), data)
+  }
 
   async readDocument(id) {
     const docRef = doc(db, this.collectionName, id)
@@ -22,15 +25,14 @@ export default class Collection {
     return null
   }
 
-  updateDocument(id, data) {
-    const docRef = doc(db, this.collectionName, id)
-
-    return updateDoc(docRef, data)
+  async updateDocument(id, data) {
+    
+    return await updateDoc(doc(db, this.collectionName, id), data)
   }
 
-  async deleteDocument(data) {
+  async deleteDocument(id) {
     
-    return await deleteDoc(doc(db, this.collectionName), data)
+    return await deleteDoc(doc(db, this.collectionName, id))
 
   }
 

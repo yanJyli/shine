@@ -5,7 +5,8 @@ import {onAuthStateChanged} from 'firebase/auth';
 
 import { connect } from 'react-redux';
 
-import withRouter from '../withRouter';
+import Header from './Header';
+import Footer from './Footer';
 
 import MainPage from './Home';
 import CollectionPage from './Collection';
@@ -22,13 +23,15 @@ export class App extends Component {
       dress: null,
       suit: null,
       sport: null,
+      isLoadingUser: true
     }
   }
 
   componentDidMount() {
     onAuthStateChanged(auth, (user) => {
       this.setState({
-        currentUser: user
+        currentUser: user,
+        isUserLoading: false,
       })
     })
 
@@ -46,16 +49,18 @@ export class App extends Component {
   }
 
   render() {
-    const { currentUser, dress, suit, sport } = this.state;
+    const { currentUser, dress, suit, sport, isLoadingUser } = this.state;
     return (
-      <Routes>
-        <Route path='/' element={<MainPage />} />
-
-        <Route path='/account' element={<Account currentUser={currentUser} />} />
-        <Route path='/login' element={<Login currentUser={currentUser}/>} />
-
-        <Route path='/collections' element={<CollectionPage currentUser={currentUser} dress={dress} suit={suit} sport={sport}/>} />
-      </Routes>
+      <>
+        <Header />
+        <Routes>          
+          <Route path='/' element={<MainPage />} />
+          <Route path='/account' element={<Account currentUser={currentUser} isLoadingUser={isLoadingUser} />} />
+          <Route path='/login' element={<Login currentUser={currentUser}/>} />
+          <Route path='/collections' element={<CollectionPage currentUser={currentUser} dress={dress} suit={suit} sport={sport}/>} />          
+        </Routes>
+        <Footer />
+      </>
     )
   }
 }
@@ -66,4 +71,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect (mapStateToProps)(withRouter(App)) 
+export default connect (mapStateToProps)(App) 

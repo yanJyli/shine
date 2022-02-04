@@ -16,12 +16,10 @@ export default class FormLogin extends Component {
 
     render() {
         return <Formik initialValues={{ email:"", password:""}} onSubmit={this.hendleSubmit}
-
-            validationSchema = {Yup.object().shape({
+            validationSchema = {Yup.object().shape({ 
                 email: Yup.string().email('Еmail должен быть верного формата').required('Еmail обязателен'),
-                password: Yup.string().matches(passwordRegex, 'Пароль должен содержать не менее 8 символов и включать как минимум одну букву и одну цифру').required('Пароль обязателен')
+                password: Yup.string().matches(passwordRegex, 'Пароль должен содержать не менее 8 символов и включать как минимум одну букву и одну цифру').required('Пароль обязателен') 
             })}
-
         >
         { ({isValid}) => (
             <Form className='w-auto p-4 text-[18px]' >

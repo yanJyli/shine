@@ -37,9 +37,9 @@ export default class AddComment extends Component {
 
         return (
             <form className='flex ' onSubmit={this.handleSubmit}>
-                <input type='text' name='comment' placeholder='Добавить комментарий...' className='hover:bg-amber-50 mr-4 p-2 text-gray-400 text-sm' 
+                <input type='text' name='comment' placeholder='Добавить комментарий...' className='hover:bg-amber-50 mr-4 p-2 text-gray-400 sm:text-sm text-xs' 
                 ref={commentInput} onChange={this.handleCommentChange} value = {comment}/>
-                <button type='submit' className='text-sm m-2 w-min p-2 hover:bg-amber-50' >Добавить</button>
+                <button type='submit' className='sm:text-sm text-xsm-2 w-min p-2 hover:bg-amber-50' >Добавить</button>
             </form>
         )
     }

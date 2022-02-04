@@ -1,11 +1,11 @@
 import Collection from './services';
 import { where } from 'firebase/firestore';
 
-export class FavoritesCollection extends Collection {
+export class CartCollection extends Collection {
     constructor() {
         super()
 
-        this.collectionName = 'favorites';
+        this.collectionName = 'cart';
     }
 
     getCollection(id) {
@@ -15,12 +15,8 @@ export class FavoritesCollection extends Collection {
     getCollectionByUsername(username) {
         return this.getDocuments(where('username', '==', username))
     }
-
-    deletetCollection(id) {
-        return this.deleteDocument(id)
-    }
 }
 
-const favoritesCollection = new FavoritesCollection()
+const cartCollection = new CartCollection()
 
-export default favoritesCollection
+export default cartCollection

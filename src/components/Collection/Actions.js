@@ -15,7 +15,7 @@ export default class Actions extends Component {
                     <LikeIcon onClick = {onLikeClick} className="w-6 cursor-pointer mr-4 hover:bg-amber-50" />                    
                     <ComentIcon onClick = {onCommentClick} className="w-6 cursor-pointer mr-4 hover:bg-amber-50" />
                 </div>
-                <p className='mt-2 font-bold'>
+                <p className='mt-2 font-bold sm:text-base text-sm'>
                     {likes.length===1 ? `${likes.length} likes` : `${likes.length} likes`}
                 </p>
             </div>

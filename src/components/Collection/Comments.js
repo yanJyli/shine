@@ -5,19 +5,18 @@ import AddCommentForm from './AddCommentForm';
 
 export default class Comments extends Component {
     render() {
-        const { comments, commentInput, onAddComment} = this.props;
+    const { comments, commentInput, onAddComment} = this.props;
     return (
-        <div className="p-4 pt-0">
-        {comments.map((comment) => (
-            <p key={comment.i} className="mb-1">
-                <span className="font-bold mr-1">{comment.username}</span>
-                <span>{comment.text}</span>
-            </p>
-        ))}
-
-        <AddCommentForm commentInput={commentInput} onSubmit={onAddComment} />
+        <div className="p-4 pt-0 sm:text-base text-sm">
+            {comments.map((comment) => (
+                <p key={comment.username} className="mb-1 ">
+                    <span className="font-bold mr-1">{comment.username}</span>
+                    <span>{comment.text}</span>
+                </p>
+            ))}
+            <AddCommentForm commentInput={commentInput} onSubmit={onAddComment} />
         </div>
-        ); 
+        )
     }
 }
 

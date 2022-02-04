@@ -10,14 +10,14 @@ export class ClothesCollection extends Collection {
 
   getCollection(id) {
     return this.readDocument(id)
+  }  
+
+  likePost(id, username) {
+    return this.updateDocument(id, { likes: arrayUnion(username) })
   }
 
   addComment(id, data) {
     return this.updateDocument(id, { comments: arrayUnion(data) })
-  }
-
-  likePost(id, username) {
-    return this.updateDocument(id, { likes: arrayUnion(username) })
   }
 }
 

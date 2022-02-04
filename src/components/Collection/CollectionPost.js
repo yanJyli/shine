@@ -27,7 +27,7 @@ export default class CollectionPost extends Component {
     
         clothesCollection.addComment(item, {
             username: currentUser.displayName,
-            text,
+            text, 
         })
     }
 
@@ -39,12 +39,12 @@ export default class CollectionPost extends Component {
         return (
             <div className='bg-white max-w-screen-lg grid mx-auto '> 
                 <div className='m-4 '>
-                    <p className='text-xl font-bold'>{item.title}</p>
-                    <p className='text-base'>{item.caption}</p>
+                    <p className='sm:text-xl text-lg font-bold'>{item.title}</p>
+                    <p className='sm:text-base text-sm'>{item.caption}</p>
                     <div className='m-2 flex overflow-x-scroll '>{item.img.map((i) => (
-                        <img key={i.id} src={`${process.env.PUBLIC_URL}/${i.src}`} id={i.id} alt='img' onClick={() =>  onClick(i.src)} className='w-1/4 p-1'/>
-                        
-                    ))}</div>
+                        <img key={i.src} src={`${process.env.PUBLIC_URL}/${i.src}`} id={i.id} alt='img' onClick={() =>  onClick(i.src)} className='sm:w-1/4 w-1/3 p-1'/>                        
+                    ))}
+                    </div>
                     <Actions likes={item.likes} onLikeClick={this.handleLikeClick} onCommentClick={this.handleCommentClickFocus}/>
                     <Comments comments={item.comments} commentInput={this.commentInputRef} onAddComment={this.handleSubmitComment}/>
                 </div>
@@ -63,12 +63,12 @@ CollectionPost.propTypes = {
     item: PropTypes.shape({
         title: PropTypes.string,
         caption: PropTypes.string,
-        img: PropTypes.objectOf({
+        img: PropTypes.arrayOf({
             src: PropTypes.string,
             id: PropTypes.string,
         }),
         likes: PropTypes.array,
-        comments: PropTypes.shape({
+        comments: PropTypes.arrayOf({
             text: PropTypes.string,
             username: PropTypes.string,
         }),

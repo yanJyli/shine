@@ -1,10 +1,11 @@
 import Collection from './services';
 import { where } from 'firebase/firestore';
-export class OderCollection extends Collection {
+
+export class OrderCollection extends Collection {
     constructor() {
         super()
 
-        this.collectionName = 'oder';
+        this.collectionName = 'order';
     }
 
     getCollection(id) {
@@ -16,6 +17,6 @@ export class OderCollection extends Collection {
     }
 }
 
-const oderCollection = new OderCollection()
+const orderCollection = new OrderCollection()
 
-export default oderCollection
+export default orderCollection

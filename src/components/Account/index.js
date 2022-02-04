@@ -3,19 +3,18 @@ import { Navigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 import favoritesCollection from '../../services/favorites-services';
-import oderCollection from '../../services/oder-services';
+import cartCollection from '../../services/cart-services';
+import orderCollection from '../../services/order-services';
 
-import Header from '../Header';
 import AccountPage from './AccountPage';
-import Footer from '../Footer';
-
 export default class Account extends Component {
     constructor(props) {
         super(props);
     
         this.state = {                  
             favoritesClothes: [],
-            oderClothes: []
+            cartClothes: [],
+            orderClothes: []
         }
     }
     
@@ -30,21 +29,25 @@ export default class Account extends Component {
             this.setState({ favoritesClothes })
         })
     
-        oderCollection.getCollectionByUsername(currentUser.displayName).then((oderClothes) => {
-            this.setState({ oderClothes })
+        cartCollection.getCollectionByUsername(currentUser.displayName).then((cartClothes) => {
+            this.setState({ cartClothes })
+        })
+
+        orderCollection.getCollectionByUsername(currentUser.displayName).then((orderClothes) => {
+            this.setState({ orderClothes })
         })
     }
 
     render() {
-        const { oderClothes, favoritesClothes } = this.state;
-        const { currentUser  } = this.props;
+        const { cartClothes, favoritesClothes, orderClothes } = this.state;
+        const { currentUser, isUserLoading  } = this.props;
         return (
             <div className="flex flex-col min-h-screen ">
                 <div className='flex-grow'>
-                    <Header />
-                    { currentUser ? ( <AccountPage currentUser={currentUser} oderClothes={oderClothes} favoritesClothes={favoritesClothes}/> ) : ( <Navigate to='/login'/> )}
+                    {isUserLoading && <div className="loader" />}
+                    {currentUser && <AccountPage currentUser={currentUser} cartClothes={cartClothes} favoritesClothes={favoritesClothes} orderClothes={orderClothes}/>} 
+                    { !currentUser && <Navigate to='/login'/> }
                 </div>
-                <Footer className=""/>
             </div>
         )
     }
