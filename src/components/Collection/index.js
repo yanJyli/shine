@@ -11,16 +11,18 @@ export default class CollectionPage extends Component {
         this.state = {            
             addModalPage: false,
             productData: null,
-            productImage: null
+            productImage: null,
+            productId: null
         }
-        this.imgRef = React.createRef()
+    this.imgRef = React.createRef()
     }
 
-    handleModalPage = (data, img) => {
+    handleModalPage = (data, img, id) => {
         this.setState({
             addModalPage: !this.state.addModalPage,
             productData: data,
-            productImage: img
+            productImage: img, 
+            productId: id
         })
     }
 
@@ -31,14 +33,14 @@ export default class CollectionPage extends Component {
     }
 
     render() {
-        const { productData, productImage, addModalPage} = this.state;
+        const { productData, productImage, productId, addModalPage} = this.state;
         const { currentUser, dress, suit, sport } = this.props;
         return (
             <>
-                <CollectionPost item={dress} onClick={(img) => this.handleModalPage(dress, img)} currentUser={currentUser}/>
-                <CollectionPost item={suit} onClick={(img) => this.handleModalPage(suit, img)} currentUser={currentUser}/>
-                <CollectionPost item={sport} onClick={(img) => this.handleModalPage(sport, img)} currentUser={currentUser}/>
-                { currentUser ? ( addModalPage && <ProductModalPage currentUser={currentUser} onClose={this.onClose} item={productData} imgRefSrc={productImage}/> ) : null}        
+                <CollectionPost item={dress} onClick={(img, id) => this.handleModalPage(dress, img, id)} currentUser={currentUser}/>
+                <CollectionPost item={suit} onClick={(img, id) => this.handleModalPage(suit, img, id)} currentUser={currentUser}/>
+                <CollectionPost item={sport} onClick={(img, id) => this.handleModalPage(sport, img, id)} currentUser={currentUser}/>
+                { currentUser ? ( addModalPage && <ProductModalPage currentUser={currentUser} onClose={this.onClose} item={productData} imgRefSrc={productImage} productId={productId}/> ) : null}        
             </>
         )
     }

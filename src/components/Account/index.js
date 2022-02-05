@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import { Navigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-import favoritesCollection from '../../services/favorites-services';
-import cartCollection from '../../services/cart-services';
-import orderCollection from '../../services/order-services';
+import favoritesCollection from '../../services/favorites-collection';
+import cartCollection from '../../services/cart-collection';
+import orderCollection from '../../services/order-collection';
 
 import AccountPage from './AccountPage';
 export default class Account extends Component {
@@ -42,11 +42,12 @@ export default class Account extends Component {
         const { cartClothes, favoritesClothes, orderClothes } = this.state;
         const { currentUser, isUserLoading  } = this.props;
         return (
-            <div className="flex flex-col min-h-screen ">
-                <div className='flex-grow'>
-                    {isUserLoading && <div className="loader" />}
-                    {currentUser && <AccountPage currentUser={currentUser} cartClothes={cartClothes} favoritesClothes={favoritesClothes} orderClothes={orderClothes}/>} 
-                    { !currentUser && <Navigate to='/login'/> }
+            <div className="flex flex-col min-h-screen">
+                <div className="flex-grow">
+                    {isUserLoading ? <div className="loader"/> : 
+                        (currentUser ? <AccountPage currentUser={currentUser} cartClothes={cartClothes} favoritesClothes={favoritesClothes} orderClothes={orderClothes}/> 
+                        : <Navigate to="/login"/> )
+                    }
                 </div>
             </div>
         )

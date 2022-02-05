@@ -9,7 +9,7 @@ export default class Login extends Component {
         const { currentUser } = this.props;        
         return (
             <div className="flex flex-col min-h-screen flex-grow w-full">                
-                { currentUser ? ( <Navigate to='/account'/> ) : ( <Forms /> )}      
+                { currentUser ? ( <Navigate to="/account"/> ) : ( <Forms /> )}      
             </div>            
         )
     }

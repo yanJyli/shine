@@ -9,7 +9,7 @@ export default class Comments extends Component {
     return (
         <div className="p-4 pt-0 sm:text-base text-sm">
             {comments.map((comment) => (
-                <p key={comment.username} className="mb-1 ">
+                <p key={comment.username} className="mb-1">
                     <span className="font-bold mr-1">{comment.username}</span>
                     <span>{comment.text}</span>
                 </p>

@@ -1,4 +1,4 @@
-import Collection from './services';
+import Collection from './collection';
 import { where } from 'firebase/firestore';
 
 export class OrderCollection extends Collection {

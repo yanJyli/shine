@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
-import cartCollection from "../../services/cart-services";
-import favoritesCollection from "../../services/favorites-services";
+import cartCollection from "../../services/cart-collection";
+import favoritesCollection from "../../services/favorites-collection";
 
 import FavoritesModalPage from "./FavoritesModalPage";
 
@@ -21,11 +21,12 @@ export default class MyFavorites extends Component {
       toCart: [
         ...this.state.toCart,
         {
+          itemId: i.itemId,
           src: i.src,
           titleToOne: i.titleToOne,
           size: i.size,
           price: i.price,
-          username: currentUser.displayName, 
+          username: currentUser.displayName,
         },
       ],
     });
@@ -35,15 +36,16 @@ export default class MyFavorites extends Component {
     const { toCart } = this.state;
 
     toCart.map((i) => {
-      const {specifiedId} = Math.round(Math.random() * 100  + 1)
-      cartCollection.createDocument(i, specifiedId)
+      const specifiedId = i.itemId;
+      cartCollection.createDocument(specifiedId, i);
 
-      favoritesCollection.deletetCollection(specifiedId).then((favoritesClothes) => {
-        this.props.favoritesClothes = favoritesClothes
-
-    })
-      
+      favoritesCollection
+        .deletetCollection(specifiedId)
+        .then((newFavoritesClothes) => {
+          this.props.favoritesClothes = newFavoritesClothes;
+        });
     });
+
     this.setState({
       addModalPage: !this.state.addModalPage,
       showfavoritesClothes: !this.state.showfavoritesClothes,
@@ -52,10 +54,10 @@ export default class MyFavorites extends Component {
 
   onClose = () => {
     this.setState({
-        addModalPage: !this.state.addModalPage,        
-        showcartClothes: this.state.showcartClothes
-    })
-  }
+      addModalPage: !this.state.addModalPage,
+      showcartClothes: this.state.showcartClothes,
+    });
+  };
 
   render() {
     const { favoritesClothes } = this.props;
@@ -67,7 +69,7 @@ export default class MyFavorites extends Component {
         {showfavoritesClothes && (
           <div className="w-full">
             {favoritesClothes.map((i) => (
-              <div className="w-min flex sm:m-4 my-2 ">
+              <div key={i.itemId} className="w-min flex sm:m-4 my-2">
                 <input
                   type="checkbox"
                   onChange={() => this.handleChange(i)}
@@ -78,7 +80,7 @@ export default class MyFavorites extends Component {
                   alt="img"
                   className="sm:mr-4 mr-2 sm:w-full w-2/3"
                 />
-                <div className=" p-2 text-sm sm:text-lg ">
+                <div className="p-2 text-sm sm:text-lg ">
                   <p className="w-full ">{`${i.titleToOne}, ${i.price}`}</p>
                   <p className="w-full">{`${i.size} размер`}</p>
                 </div>
@@ -95,9 +97,7 @@ export default class MyFavorites extends Component {
             >
               Добавить в корзину
             </button>
-            {addModalPage && (
-              <FavoritesModalPage onClose={this.onClose}/>
-            )}
+            {addModalPage && <FavoritesModalPage onClose={this.onClose} />}
           </div>
         )}
       </div>

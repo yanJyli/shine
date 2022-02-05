@@ -22,10 +22,10 @@ export default class FormLogin extends Component {
             })}
         >
         { ({isValid}) => (
-            <Form className='w-auto p-4 text-[18px]' >
+            <Form className="w-auto p-4 text-[18px]">
                 <Field name="email" component={FormInput} label="Введите еmail"/>
                 <Field name="password" component={FormInput} label="Введите пароль" type="password"/>
-                <button className=' m-2 border rounded border-gray-300 w-min px-2 hover:bg-amber-50' type="submit"  disabled={!isValid}>Вход</button>
+                <button className="m-2 border rounded border-gray-300 w-min px-2 hover:bg-amber-50" type="submit"  disabled={!isValid}>Вход</button>
             </Form>)}
         </Formik>
     }

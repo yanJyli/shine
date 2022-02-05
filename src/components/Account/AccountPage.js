@@ -49,9 +49,9 @@ export default class AccountPage extends Component {
         const {favoritesClothes, cartClothes, currentUser, orderClothes} = this.props;
 
         return (
-            <div className='bg-white max-w-screen-lg flex mx-auto '>
+            <div className="bg-white max-w-screen-lg flex mx-auto">
                 <AccountNav onClickProducts={this.handleClickProducts} onClickCart={this.handleClickCart} onClickOrder={this.handleClickOrder}/>
-                {addStart && <div className=' w-full text-center text-lg sm:text-xl m-4'>Добро пожаловать в личный кабинет, {currentUser.displayName}!</div>}
+                {addStart && <div className="w-full text-center text-lg sm:text-xl m-4">Добро пожаловать в личный кабинет, {currentUser.displayName}!</div>}
                 {addProducts && <MyFavorites favoritesClothes={favoritesClothes} currentUser={currentUser}/>}
                 {addCart && <MyCart cartClothes={cartClothes}/>}
                 {addOrder && <MyOrder orderClothes={orderClothes}/>}
