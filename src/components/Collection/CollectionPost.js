@@ -22,16 +22,16 @@ export default class CollectionPost extends Component {
     }
 
     handleLikeClick = () => {
-        const { item, currentUser } = this.props;
-        this.setState({ changeLikeIcon: !this.state.changeLikeIcon });
+        const { id, currentUser } = this.props;
+        this.setState({ changeLikeIcon: !this.state.changeLikeIcon }); 
 
-        clothesCollection.likePost(item, currentUser.displayName);
+        clothesCollection.likePost(id, currentUser.displayName);
     }    
 
     handleSubmitComment = (text) => {
-        const { currentUser, item } = this.props;
+        const { currentUser, id } = this.props;
     
-        clothesCollection.addComment(item, {
+        clothesCollection.addComment(id, {
             username: currentUser.displayName,
             text, 
         });

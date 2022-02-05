@@ -37,9 +37,9 @@ export default class CollectionPage extends Component {
         const { currentUser, dress, suit, sport } = this.props;
         return (
             <>
-                <CollectionPost item={dress} onClick={(img, id) => this.handleModalPage(dress, img, id)} currentUser={currentUser}/>
-                <CollectionPost item={suit} onClick={(img, id) => this.handleModalPage(suit, img, id)} currentUser={currentUser}/>
-                <CollectionPost item={sport} onClick={(img, id) => this.handleModalPage(sport, img, id)} currentUser={currentUser}/>
+                <CollectionPost item={dress} id={dress} onClick={(img, id) => this.handleModalPage(dress, img, id)} currentUser={currentUser}/>
+                <CollectionPost item={suit} id={suit} onClick={(img, id) => this.handleModalPage(suit, img, id)} currentUser={currentUser}/>
+                <CollectionPost item={sport} id={sport} onClick={(img, id) => this.handleModalPage(sport, img, id)} currentUser={currentUser}/>
                 { currentUser ? ( addModalPage && <ProductModalPage currentUser={currentUser} onClose={this.onClose} item={productData} imgRefSrc={productImage} productId={productId}/> ) : null}        
             </>
         )
