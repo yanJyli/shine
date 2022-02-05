@@ -11,8 +11,7 @@ import Img7 from '../img/post/7.png';
 import Img8 from '../img/post/8.png';
 import Img9 from '../img/post/9.png';
 export default class MainPage extends Component {
-    render() {
-        
+    render() {        
         return (
             <div className="bg-white max-w-screen-lg mx-auto">                
                 <h1 className="sm:text-2xl text-xl text-center place-content-center flex sm:p-8 p-4">Узнаваемый стиль | Женская одежда | Уникальный стиль</h1>        

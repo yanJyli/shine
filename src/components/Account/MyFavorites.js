@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from 'prop-types';
 
 import cartCollection from "../../services/cart-collection";
 import favoritesCollection from "../../services/favorites-collection";
@@ -36,15 +37,12 @@ export default class MyFavorites extends Component {
     const { toCart } = this.state;
 
     toCart.map((i) => {
-      const specifiedId = i.itemId;
-      cartCollection.createDocument(specifiedId, i);
+      cartCollection.createDocument( i, i.itemId);
 
       favoritesCollection
-        .deletetCollection(specifiedId)
-        .then((newFavoritesClothes) => {
-          this.props.favoritesClothes = newFavoritesClothes;
-        });
+        .deletetCollection(i.itemId);
     });
+
 
     this.setState({
       addModalPage: !this.state.addModalPage,
@@ -57,6 +55,7 @@ export default class MyFavorites extends Component {
       addModalPage: !this.state.addModalPage,
       showcartClothes: this.state.showcartClothes,
     });
+    window.location.reload();
   };
 
   render() {
@@ -89,7 +88,7 @@ export default class MyFavorites extends Component {
           </div>
         )}
 
-        {!favoritesClothes ? null : (
+        {favoritesClothes ? (
           <div className="grid place-items-center">
             <button
               onClick={this.handleMoveToCart}
@@ -99,8 +98,21 @@ export default class MyFavorites extends Component {
             </button>
             {addModalPage && <FavoritesModalPage onClose={this.onClose} />}
           </div>
-        )}
+        ) : null }
       </div>
     );
   }
+}
+MyFavorites.defaultProps = {
+  favoritesClothes: null,
+}
+
+MyFavorites.propTypes = {
+  favoritesClothes: PropTypes.arrayOf(PropTypes.shape(
+    {itemId: PropTypes.string,
+    username: PropTypes.string,
+    src: PropTypes.string,
+    titleToOne: PropTypes.string,
+    price: PropTypes.string,
+    size: PropTypes.number})),
 }

@@ -70,15 +70,9 @@ CollectionPost.propTypes = {
     item: PropTypes.shape({
         title: PropTypes.string,
         caption: PropTypes.string,
-        img: PropTypes.arrayOf({
-            src: PropTypes.string,
-            id: PropTypes.string,
-        }),
+        img: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
         likes: PropTypes.array,
-        comments: PropTypes.arrayOf({
-            text: PropTypes.string,
-            username: PropTypes.string,
-        }),
+        comments: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
     }),
     currentUser: PropTypes.shape({
         username: PropTypes.string,

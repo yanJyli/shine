@@ -23,7 +23,7 @@ export class App extends Component {
       dress: null,
       suit: null,
       sport: null,
-      isLoadingUser: true,
+      isUserLoading: true,
     };
   }
 
@@ -49,13 +49,13 @@ export class App extends Component {
   }
 
   render() {
-    const { currentUser, dress, suit, sport, isLoadingUser } = this.state;
+    const { currentUser, dress, suit, sport, isUserLoading } = this.state;
     return (
       <>
         <Header />
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/account" element={<Account currentUser={currentUser} isLoadingUser={isLoadingUser}/>} />
+          <Route path="/account" element={<Account currentUser={currentUser} isUserLoading={isUserLoading}/>} />
           <Route path="/login" element={<Login currentUser={currentUser} />} />
           <Route path="/collections" element={<CollectionPage currentUser={currentUser} dress={dress} suit={suit} sport={sport} />}/>
         </Routes>

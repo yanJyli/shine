@@ -15,7 +15,11 @@ export class CartCollection extends Collection {
     getCollectionByUsername(username) {
         return this.getDocuments(where('username', '==', username))
     }
-}
+    
+    deletetCollection(id) {
+        return this.deleteDocument(id)
+    }
+} 
 
 const cartCollection = new CartCollection()
 

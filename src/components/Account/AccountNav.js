@@ -19,4 +19,5 @@ export default class AccountNav extends Component {
 AccountNav.propTypes = {
     onClickProducts: PropTypes.func.isRequired,
     onClickCart: PropTypes.func.isRequired,
+    onClickOrder: PropTypes.func.isRequired,
 }

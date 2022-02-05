@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import CartModalPage from "./CartModalPage";
+import PropTypes from 'prop-types';
+
+import cartCollection from "../../services/cart-collection";
+import orderCollection from "../../services/order-collection";
 
 export default class MyCart extends Component {
   constructor(props) {
@@ -8,21 +12,51 @@ export default class MyCart extends Component {
     this.state = {
       addModalPage: false,
       showcartClothes: true,
+      toOrder: [],
     };
   }
 
-  handleModalPage = () => {
+  handleChange = (i) => {
+    const { currentUser } = this.props;
+    this.setState({
+      toOrder: [
+        ...this.state.toOrder,
+        {
+          itemId: i.itemId,
+          src: i.src,
+          titleToOne: i.titleToOne,
+          size: i.size,
+          price: i.price,
+          username: currentUser.displayName,
+        },
+      ],
+    });
+  };
+
+  handleMoveToOrder = () => {
+    const { toOrder } = this.state;
+
+    toOrder.map((i) => {
+      orderCollection.createDocument( i, i.itemId);
+
+      cartCollection
+        .deletetCollection(i.itemId);
+    });
+    
     this.setState({
       addModalPage: !this.state.addModalPage,
       showcartClothes: !this.state.showcartClothes,
     });
   };
+
   onClose = () => {
     this.setState({
       addModalPage: !this.state.addModalPage,
       showcartClothes: this.state.showcartClothes,
     });
+    window.location.reload();
   };
+  
   render() {
     const { cartClothes } = this.props;
     const { showcartClothes, addModalPage } = this.state;
@@ -33,8 +67,8 @@ export default class MyCart extends Component {
           {showcartClothes && (
             <div className="w-full">
               {cartClothes.map((i) => (
-                <div className="w-min flex sm:m-4 my-2">
-                  <input type="checkbox" className="text-center sm:m-4 m-2" />
+                <div key={i.itemId} className="w-min flex sm:m-4 my-2">
+                  <input type="checkbox" onChange={() => this.handleChange(i)} className="text-center sm:m-4 m-2" />
                   <img
                     src={`${process.env.PUBLIC_URL}/${i.src}`}
                     alt="img"
@@ -52,7 +86,7 @@ export default class MyCart extends Component {
           {!cartClothes ? null : (
             <div className="grid place-items-center">
               <button
-                onClick={this.handleModalPage}
+                onClick={this.handleMoveToOrder}
                 className="w-fit hover:bg-amber-50 p-2"
               >
                 Оформить заказ
@@ -64,4 +98,18 @@ export default class MyCart extends Component {
       </div>
     );
   }
+}
+
+MyCart.defaultProps = {
+  cartClothes: null,
+}
+
+MyCart.propTypes = {
+  cartClothes: PropTypes.arrayOf(PropTypes.shape(
+    {itemId: PropTypes.string,
+    username: PropTypes.string,
+    src: PropTypes.string,
+    titleToOne: PropTypes.string,
+    price: PropTypes.string,
+    size: PropTypes.number})),
 }

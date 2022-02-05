@@ -25,4 +25,5 @@ Actions.propTypes = {
     likes: PropTypes.array.isRequired,
     onCommentClick: PropTypes.func.isRequired,
     onLikeClick: PropTypes.func.isRequired,
+    srcIconLike: PropTypes.string.isRequired,
 }

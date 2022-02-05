@@ -60,38 +60,23 @@ CollectionPage.propTypes = {
     dress: PropTypes.shape({
         title: PropTypes.string,
         caption: PropTypes.string,
-        img: PropTypes.arrayOf({
-            src: PropTypes.string,
-        }),
+        img: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
         likes: PropTypes.arrayOf(PropTypes.string),
-        comments: PropTypes.arrayOf({
-            text: PropTypes.string,
-            username: PropTypes.string,
-        }),
+        comments: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
     }),
     suit: PropTypes.shape({
         title: PropTypes.string,
         caption: PropTypes.string,
-        img: PropTypes.arrayOf({
-            src: PropTypes.string,
-        }),
+        img: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
         likes: PropTypes.arrayOf(PropTypes.string),
-        comments: PropTypes.arrayOf({
-            text: PropTypes.string,
-            username: PropTypes.string,
-        }),
+        comments: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
     }),
     sport: PropTypes.shape({
         title: PropTypes.string,
         caption: PropTypes.string,
-        img: PropTypes.arrayOf({
-            src: PropTypes.string,
-        }),
+        img: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
         likes: PropTypes.arrayOf(PropTypes.string),
-        comments: PropTypes.arrayOf({
-            text: PropTypes.string,
-            username: PropTypes.string,
-        }),
+        comments: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
     }),
 }
 

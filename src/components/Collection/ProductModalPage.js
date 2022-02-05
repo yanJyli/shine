@@ -82,7 +82,7 @@ export default class ProductModalPage extends Component {
                             <div>                                
                                 <button onClick={this.handleShowTable} className="mr-2 border px-2 hover:bg-amber-50">Показать таблицу</button>  
                                 {size.map((i) => (                                  
-                                    <button onClick={() => this.handleSizeClick(i.id)} className="border px-2 hover:bg-amber-50">{i.id}</button>
+                                    <button key={i.id} onClick={() => this.handleSizeClick(i.id)} className="border px-2 hover:bg-amber-50">{i.id}</button>
                                 ))}
                             </div>
                         </div>
@@ -100,7 +100,17 @@ export default class ProductModalPage extends Component {
         )
     }
 }
+ProductModalPage.defaultProps = {
+    item: null,
+}
 
 ProductModalPage.propTypes = {
     onClose: PropTypes.func.isRequired,
+    item: PropTypes.shape({
+        title: PropTypes.string,
+        caption: PropTypes.string,
+        img: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
+        likes: PropTypes.array,
+        comments: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)),
+    }),
 }
