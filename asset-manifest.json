@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/shine/static/css/main.ffde28e3.css",
-    "main.js": "/shine/static/js/main.fd260d5c.js",
+    "main.css": "/shine/static/css/main.0b3fa364.css",
+    "main.js": "/shine/static/js/main.23db6462.js",
     "static/media/2.png": "/shine/static/media/2.e2a457a2dfffe878b293.png",
     "static/media/pngwing.com.png": "/shine/static/media/pngwing.com.5e9087cfb5c84d7cd85e.png",
     "static/media/4.png": "/shine/static/media/4.bc60942f9314ceeed296.png",
@@ -13,15 +13,13 @@
     "static/media/7.png": "/shine/static/media/7.c13f9900d938db6d2a23.png",
     "static/media/6.png": "/shine/static/media/6.d3da50a4dd8a9346dc34.png",
     "static/media/sizes_women.jpg": "/shine/static/media/sizes_women.9e1652c85867d2f9da64.jpg",
-    "static/media/heart-thin.svg": "/shine/static/media/heart-thin.3d4daea18e994e1780372f50f9f79c45.svg",
     "index.html": "/shine/index.html",
-    "static/media/red-heart.svg": "/shine/static/media/red-heart.db5f2c5f77bae45dfa1986fa8b9fc6c7.svg",
     "static/media/instagram-comment.svg": "/shine/static/media/instagram-comment.95ccce546541668fcc76379ecb8ce05d.svg",
-    "main.ffde28e3.css.map": "/shine/static/css/main.ffde28e3.css.map",
-    "main.fd260d5c.js.map": "/shine/static/js/main.fd260d5c.js.map"
+    "main.0b3fa364.css.map": "/shine/static/css/main.0b3fa364.css.map",
+    "main.23db6462.js.map": "/shine/static/js/main.23db6462.js.map"
   },
   "entrypoints": [
-    "static/css/main.ffde28e3.css",
-    "static/js/main.fd260d5c.js"
+    "static/css/main.0b3fa364.css",
+    "static/js/main.23db6462.js"
   ]
 }
