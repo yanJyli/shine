@@ -1,26 +1,26 @@
-import Collection from './collection';
-import { where } from 'firebase/firestore';
+import Collection from "./collection";
+import { where } from "firebase/firestore";
 
 export class OrderCollection extends Collection {
-    constructor() {
-        super()
+  constructor() {
+    super();
 
-        this.collectionName = 'order';
-    }
+    this.collectionName = "order";
+  }
 
-    getCollection(id) {
-        return this.readDocument(id)
-    }
+  getCollection(id) {
+    return this.readDocument(id);
+  }
 
-    getCollectionByUsername(username) {
-        return this.getDocuments(where('username', '==', username))
-    }
+  getCollectionByUsername(username) {
+    return this.getDocuments(where("username", "==", username));
+  }
 
-    deletetCollection(id) {
-        return this.deleteDocument(id)
-    }
+  deletetCollection(id) {
+    return this.deleteDocument(id);
+  }
 }
 
-const orderCollection = new OrderCollection()
+const orderCollection = new OrderCollection();
 
-export default orderCollection
+export default orderCollection;

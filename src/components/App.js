@@ -3,8 +3,6 @@ import { Routes, Route } from "react-router-dom";
 import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
 
-import { connect } from "react-redux";
-
 import Header from "./Header";
 import Footer from "./Footer";
 
@@ -14,7 +12,8 @@ import Account from "./Account";
 import Login from "./Form/index";
 
 import clothesCollection from "../services/clothes-collection";
-export class App extends Component {
+
+export default class App extends Component {
   constructor(props) {
     super(props);
 
@@ -23,18 +22,12 @@ export class App extends Component {
       dress: null,
       suit: null,
       sport: null,
+      shirts: null,
       isUserLoading: true,
     };
   }
 
-  componentDidMount() {
-    onAuthStateChanged(auth, (user) => {
-      this.setState({
-        currentUser: user,
-        isUserLoading: false,
-      });
-    });
-
+  handleChangeState = () => {
     clothesCollection.getCollection("dress").then((dress) => {
       this.setState({ dress });
     });
@@ -46,29 +39,57 @@ export class App extends Component {
     clothesCollection.getCollection("sport").then((sport) => {
       this.setState({ sport });
     });
+
+    clothesCollection.getCollection("shirts").then((shirts) => {
+      this.setState({ shirts });
+    });
+  };
+
+  componentDidMount() {
+    onAuthStateChanged(auth, (user) => {
+      this.setState({
+        currentUser: user,
+        isUserLoading: false,
+      });
+    });
+
+    this.handleChangeState();
   }
 
   render() {
-    const { currentUser, dress, suit, sport, isUserLoading } = this.state;
+    const { currentUser, dress, suit, sport, shirts, isUserLoading } =
+      this.state;
     return (
       <>
         <Header />
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/account" element={<Account currentUser={currentUser} isUserLoading={isUserLoading}/>} />
+          <Route
+            path="/account"
+            element={
+              <Account
+                currentUser={currentUser}
+                isUserLoading={isUserLoading}
+              />
+            }
+          />
           <Route path="/login" element={<Login currentUser={currentUser} />} />
-          <Route path="/collections" element={<CollectionPage currentUser={currentUser} dress={dress} suit={suit} sport={sport} />}/>
+          <Route
+            path="/collections"
+            element={
+              <CollectionPage
+                currentUser={currentUser}
+                dress={dress}
+                suit={suit}
+                sport={sport}
+                shirts={shirts}
+                handleChangeState={this.handleChangeState}
+              />
+            }
+          />
         </Routes>
         <Footer />
       </>
     );
   }
 }
-
-const mapStateToProps = (state) => {
-  return {
-    user: state.user.data,
-  };
-};
-
-export default connect(mapStateToProps)(App);

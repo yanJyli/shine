@@ -10,7 +10,7 @@ export default class MyOrder extends Component {
                 <div className="grid place-items-center">
                     <div className="w-full sm:flex sm:place-content-center">
                     {orderClothes.map((i) => (
-                        <div key={i.itemId} className="w-min  m-4">
+                        <div key={i.itemId} className="w-min inline m-4">
                             <img src={`${process.env.PUBLIC_URL}/${i.src}`} alt="img" className=" mr-4 "/>
                             <div className="m-2 p-2 text-sm sm:text-lg ">
                             <p className="w-full">{`${i.titleToOne}, ${i.price}`}</p>
@@ -24,6 +24,7 @@ export default class MyOrder extends Component {
         )
     }
 }
+
 MyOrder.defaultProps = {
     orderClothes: null,
 }

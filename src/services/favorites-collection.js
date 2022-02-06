@@ -1,26 +1,26 @@
-import Collection from './collection';
-import { where } from 'firebase/firestore';
+import Collection from "./collection";
+import { where } from "firebase/firestore";
 
 export class FavoritesCollection extends Collection {
-    constructor() {
-        super()
+  constructor() {
+    super();
 
-        this.collectionName = 'favorites';
-    }
+    this.collectionName = "favorites";
+  }
 
-    getCollection(id) {
-        return this.readDocument(id)
-    }
+  getCollection(id) {
+    return this.readDocument(id);
+  }
 
-    getCollectionByUsername(username) {
-        return this.getDocuments(where('username', '==', username))
-    }
+  getCollectionByUsername(username) {
+    return this.getDocuments(where("username", "==", username));
+  }
 
-    deletetCollection(id) {
-        return this.deleteDocument(id)
-    }
+  deletetCollection(id) {
+    return this.deleteDocument(id);
+  }
 }
 
-const favoritesCollection = new FavoritesCollection()
+const favoritesCollection = new FavoritesCollection();
 
-export default favoritesCollection
+export default favoritesCollection;

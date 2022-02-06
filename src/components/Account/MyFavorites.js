@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 import cartCollection from "../../services/cart-collection";
 import favoritesCollection from "../../services/favorites-collection";
@@ -35,14 +35,15 @@ export default class MyFavorites extends Component {
 
   handleMoveToCart = () => {
     const { toCart } = this.state;
+    const { handleChangeState } = this.props;
 
     toCart.map((i) => {
-      cartCollection.createDocument( i, i.itemId);
+      cartCollection.createDocument(i, i.itemId);
 
-      favoritesCollection
-        .deletetCollection(i.itemId);
+      favoritesCollection.deletetCollection(i.itemId);
     });
 
+    handleChangeState();
 
     this.setState({
       addModalPage: !this.state.addModalPage,
@@ -55,7 +56,12 @@ export default class MyFavorites extends Component {
       addModalPage: !this.state.addModalPage,
       showcartClothes: this.state.showcartClothes,
     });
-    window.location.reload();
+  };
+
+  onDelete = (i) => {
+    const { handleChangeState } = this.props;
+    favoritesCollection.deletetCollection(i.itemId);
+    handleChangeState();
   };
 
   render() {
@@ -68,12 +74,13 @@ export default class MyFavorites extends Component {
         {showfavoritesClothes && (
           <div className="w-full">
             {favoritesClothes.map((i) => (
-              <div key={i.itemId} className="w-min flex sm:m-4 my-2">
+              <div key={i.itemId} className="w-min flex sm:m-2 my-2">
                 <input
                   type="checkbox"
                   onChange={() => this.handleChange(i)}
-                  className="text-center sm:m-4 m-2"
+                  className="text-center sm:m-2 my-2"
                 />
+
                 <img
                   src={`${process.env.PUBLIC_URL}/${i.src}`}
                   alt="img"
@@ -82,12 +89,17 @@ export default class MyFavorites extends Component {
                 <div className="p-2 text-sm sm:text-lg ">
                   <p className="w-full ">{`${i.titleToOne}, ${i.price}`}</p>
                   <p className="w-full">{`${i.size} размер`}</p>
+                  <button
+                    onClick={() => this.onDelete(i)}
+                    className="w-min h-min border my-2 text-sm rounded hover:bg-amber-50 px-1"
+                  >
+                    Удалить
+                  </button>
                 </div>
               </div>
             ))}
           </div>
         )}
-
         {favoritesClothes ? (
           <div className="grid place-items-center">
             <button
@@ -96,23 +108,27 @@ export default class MyFavorites extends Component {
             >
               Добавить в корзину
             </button>
-            {addModalPage && <FavoritesModalPage onClose={this.onClose} />}
           </div>
-        ) : null }
+        ) : null}
+        {addModalPage && <FavoritesModalPage onClose={this.onClose} />}
       </div>
     );
   }
 }
+
 MyFavorites.defaultProps = {
   favoritesClothes: null,
-}
+};
 
 MyFavorites.propTypes = {
-  favoritesClothes: PropTypes.arrayOf(PropTypes.shape(
-    {itemId: PropTypes.string,
-    username: PropTypes.string,
-    src: PropTypes.string,
-    titleToOne: PropTypes.string,
-    price: PropTypes.string,
-    size: PropTypes.number})),
-}
+  favoritesClothes: PropTypes.arrayOf(
+    PropTypes.shape({
+      itemId: PropTypes.string,
+      username: PropTypes.string,
+      src: PropTypes.string,
+      titleToOne: PropTypes.string,
+      price: PropTypes.string,
+      size: PropTypes.number,
+    })
+  ),
+};

@@ -1,26 +1,26 @@
-import Collection from './collection';
-import { where } from 'firebase/firestore';
+import Collection from "./collection";
+import { where } from "firebase/firestore";
 
 export class CartCollection extends Collection {
-    constructor() {
-        super()
+  constructor() {
+    super();
 
-        this.collectionName = 'cart';
-    }
+    this.collectionName = "cart";
+  }
 
-    getCollection(id) {
-        return this.readDocument(id)
-    }
+  getCollection(id) {
+    return this.readDocument(id);
+  }
 
-    getCollectionByUsername(username) {
-        return this.getDocuments(where('username', '==', username))
-    }
-    
-    deletetCollection(id) {
-        return this.deleteDocument(id)
-    }
-} 
+  getCollectionByUsername(username) {
+    return this.getDocuments(where("username", "==", username));
+  }
 
-const cartCollection = new CartCollection()
+  deletetCollection(id) {
+    return this.deleteDocument(id);
+  }
+}
 
-export default cartCollection
+const cartCollection = new CartCollection();
+
+export default cartCollection;
