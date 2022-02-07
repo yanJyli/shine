@@ -5,7 +5,7 @@ import AddCommentForm from "./AddCommentForm";
 
 export default class Comments extends Component {
   render() {
-    const { comments, commentInput, onAddComment } = this.props;
+    const { comments, commentInput, onAddComment, currentUser } = this.props;
     return (
       <div className="p-4 pt-0 sm:text-base text-sm">
         {comments.map((comment) => (
@@ -14,11 +14,14 @@ export default class Comments extends Component {
             <span>{comment.text}</span>
           </p>
         ))}
-        <AddCommentForm commentInput={commentInput} onSubmit={onAddComment} />
+        <AddCommentForm commentInput={commentInput} onSubmit={onAddComment} currentUser={currentUser}/>
       </div>
     );
   }
 }
+Comments.defaultProps = {
+  currentUser: null,
+};
 
 Comments.propTypes = {
   commentInput: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
@@ -29,4 +32,7 @@ Comments.propTypes = {
     })
   ).isRequired,
   onAddComment: PropTypes.func.isRequired,
+  currentUser: PropTypes.shape({
+    username: PropTypes.string,
+  }),
 };

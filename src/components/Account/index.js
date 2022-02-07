@@ -23,7 +23,7 @@ Account.defaultProps = {
 
 Account.propTypes = {
   currentUser: PropTypes.shape({
-    username: PropTypes.string,
-    isUserLoading: PropTypes.bool,
+    username: PropTypes.string,    
   }),
+  isUserLoading: PropTypes.bool,
 };

@@ -32,10 +32,10 @@ export default class AddComment extends Component {
     });
   };
   render() {
-    const { commentInput } = this.props;
+    const { commentInput, currentUser } = this.props;
     const { comment } = this.state;
 
-    return (
+    return (  !currentUser ? null : 
       <form className="flex" onSubmit={this.handleSubmit}>
         <input
           type="text"
@@ -52,11 +52,16 @@ export default class AddComment extends Component {
         >
           Добавить
         </button>
-      </form>
-    );
+      </form>);
   }
 }
+AddComment.defaultProps = {
+  currentUser: null,
+};
 
 AddComment.propTypes = {
+  currentUser: PropTypes.shape({
+    username: PropTypes.string,
+  }),
   commentInput: PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
 };

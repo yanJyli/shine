@@ -76,6 +76,7 @@ export default class CollectionPost extends Component {
             comments={item.comments}
             commentInput={this.commentInputRef}
             onAddComment={this.handleSubmitComment}
+            currentUser={currentUser}
           />
         </div>
       </div>
