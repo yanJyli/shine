@@ -65,10 +65,10 @@ export default class CollectionPost extends Component {
           <Actions
             likes={item.likes}
             onLikeClick={this.handleLikeClick}
-            srcIconLike={
-              !item.likes.includes(currentUser.displayName)
-                ? LikeIcon
-                : RedLikeIcon
+            srcIconLike={(currentUser &&
+              item.likes.includes(currentUser.displayName))
+                ? RedLikeIcon
+                : LikeIcon
             }
             onCommentClick={this.handleCommentClickFocus}
           />

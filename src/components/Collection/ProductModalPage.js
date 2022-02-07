@@ -88,7 +88,7 @@ export default class ProductModalPage extends Component {
               <div>
                 <button
                   onClick={this.handleShowTable}
-                  className="sm:mr-2 border px-2 hover:bg-amber-50 mr-20"
+                  className="sm:mr-2 border px-2 hover:bg-amber-50 sm:inline block"
                 >
                   Показать таблицу
                 </button>
@@ -96,7 +96,7 @@ export default class ProductModalPage extends Component {
                   <button
                     key={i.id}
                     onClick={() => this.handleSizeClick(i.id)}
-                    className="border px-2 hover:bg-amber-50 sm:text-base text-sm"
+                    className="border px-2 hover:bg-amber-50 sm:text-base text-sm "
                   >
                     {i.id}
                   </button>

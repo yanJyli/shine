@@ -78,7 +78,7 @@ export default class MyFavorites extends Component {
                 <input
                   type="checkbox"
                   onChange={() => this.handleChange(i)}
-                  className="text-center sm:m-2 my-2"
+                  className="text-center sm:m-4 m-2"
                 />
 
                 <img
