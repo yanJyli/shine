@@ -14,7 +14,7 @@ export default class ProductModalPage extends Component {
       showAnswerToCart: false,
       size: [{ id: 40 }, { id: 42 }, { id: 44 }, { id: 46 }, { id: 48 }],
       sizeId: null,
-    };
+    }; 
   }
 
   handleShowTable = () => {

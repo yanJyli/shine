@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Routes, Route } from "react-router-dom";
 import { auth } from "../firebase";
 import { onAuthStateChanged } from "firebase/auth";
+import { connect } from "react-redux";
 
 import Header from "./Header";
 import Footer from "./Footer";
@@ -9,56 +10,51 @@ import Footer from "./Footer";
 import MainPage from "./Home";
 import CollectionPage from "./Collection";
 import Account from "./Account";
-import Login from "./Form/index";
+import Login from "./Form";
 
-import clothesCollection from "../services/clothes-collection";
+import { getCollectionDress } from "../store/collection/dressSlice";
+import { getCollectionSuit } from "../store/collection/suitSlice";
+import { getCollectionSport } from "../store/collection/sportSlice";
+import { getCollectionShirts } from "../store/collection/shirtsSlice";
+import { setUser } from "../store/auth/authSlice";
 
-export default class App extends Component {
+export class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      currentUser: null,
-      dress: null,
-      suit: null,
-      sport: null,
-      shirts: null,
       isUserLoading: true,
     };
   }
 
-  handleChangeState = () => {
-    clothesCollection.getCollection("dress").then((dress) => {
-      this.setState({ dress });
-    });
+  handleChangeState = () => {    
+    const { dispatch } = this.props;
 
-    clothesCollection.getCollection("suit").then((suit) => {
-      this.setState({ suit });
-    });
+    dispatch(getCollectionDress());
 
-    clothesCollection.getCollection("sport").then((sport) => {
-      this.setState({ sport });
-    });
+    dispatch(getCollectionSuit());
 
-    clothesCollection.getCollection("shirts").then((shirts) => {
-      this.setState({ shirts });
-    });
-  };
+    dispatch(getCollectionSport());
+
+    dispatch(getCollectionShirts());
+  };  
 
   componentDidMount() {
-    onAuthStateChanged(auth, (user) => {
-      this.setState({
-        currentUser: user,
+    const { dispatch } = this.props;
+    onAuthStateChanged(auth, (user) => {      
+      dispatch(setUser(user));      
+    });
+
+    this.setState({
         isUserLoading: false,
-      });
     });
 
     this.handleChangeState();
   }
 
   render() {
-    const { currentUser, dress, suit, sport, shirts, isUserLoading } =
-      this.state;
+    const { isUserLoading } = this.state;
+    const { currentUser, dress, suit, sport, shirts } = this.props;
     return (
       <>
         <Header />
@@ -93,3 +89,15 @@ export default class App extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    dress: state.dress.data,
+    suit: state.suit.data,
+    sport: state.sport.data,
+    shirts: state.shirts.data,
+    currentUser: state.auth.currentUser,
+  };
+};
+
+export default connect(mapStateToProps)(App);

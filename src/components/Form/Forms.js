@@ -28,6 +28,7 @@ export default class Forms extends Component {
   };
 
   render() {
+    const {addFormLogin, addFormSingUp} = this.state;
     return (
       <div className="bg-white max-w-screen-lg mx-auto text-center w-full p-4">
         <button
@@ -42,8 +43,8 @@ export default class Forms extends Component {
         >
           Регистрация
         </button>
-        {this.state.addFormLogin && <FormLogin />}
-        {this.state.addFormSingUp && <FormSingUp />}
+        {addFormLogin && <FormLogin />}
+        {addFormSingUp && <FormSingUp />}
       </div>
     );
   }

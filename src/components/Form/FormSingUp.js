@@ -18,7 +18,7 @@ export default class FormSingUp extends Component {
         setDoc(doc(db, "users", values.username), {
           username: values.username,
         });
-      }
+      } 
     );
   };
   render() {

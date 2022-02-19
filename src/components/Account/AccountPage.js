@@ -1,15 +1,16 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 import AccountNav from "./AccountNav";
 import MyFavorites from "./MyFavorites";
 import MyCart from "./MyCart";
 import MyOrder from "./MyOrder";
 
-import favoritesCollection from "../../services/favorites-collection";
-import cartCollection from "../../services/cart-collection";
-import orderCollection from "../../services/order-collection";
-export default class AccountPage extends Component {
+import { getFavoritesClothes } from "../../store/account/favoritesSlice";
+import { getCartClothes } from "../../store/account/cartSlice";
+import { getOrderClothes } from "../../store/account/orderSlice";
+export class AccountPage extends Component {
   constructor(props) {
     super(props);
 
@@ -18,14 +19,11 @@ export default class AccountPage extends Component {
       addCart: false,
       addStart: true,
       addOrder: false,
-      favoritesClothes: [],
-      cartClothes: [],
-      orderClothes: [],
     };
   }
 
-  handleClickProducts = () => {
-    const { currentUser } = this.props;
+  handleClickFavorites = () => {
+    const { currentUser, dispatch } = this.props;
 
     if (!currentUser) {
       return null;
@@ -36,15 +34,12 @@ export default class AccountPage extends Component {
       addStart: false,
       addOrder: false,
     });
-    favoritesCollection
-      .getCollectionByUsername(currentUser.displayName)
-      .then((favoritesClothes) => {
-        this.setState({ favoritesClothes });
-      });
+
+    dispatch(getFavoritesClothes(currentUser.displayName));
   };
 
   handleClickCart = () => {
-    const { currentUser } = this.props;
+    const { currentUser, dispatch } = this.props;
 
     if (!currentUser) {
       return null;
@@ -55,15 +50,12 @@ export default class AccountPage extends Component {
       addStart: false,
       addOrder: false,
     });
-    cartCollection
-      .getCollectionByUsername(currentUser.displayName)
-      .then((cartClothes) => {
-        this.setState({ cartClothes });
-      });
+
+    dispatch(getCartClothes(currentUser.displayName));
   };
 
   handleClickOrder = () => {
-    const { currentUser } = this.props;
+    const { currentUser, dispatch } = this.props;
 
     if (!currentUser) {
       return null;
@@ -74,29 +66,19 @@ export default class AccountPage extends Component {
       addStart: false,
       addOrder: true,
     });
-    orderCollection
-      .getCollectionByUsername(currentUser.displayName)
-      .then((orderClothes) => {
-        this.setState({ orderClothes });
-      });
+
+    dispatch(getOrderClothes(currentUser.displayName));
   };
 
   render() {
-    const {
-      addStart,
-      addProducts,
-      addCart,
-      addOrder,
-      favoritesClothes,
-      cartClothes,
-      orderClothes,
-    } = this.state;
-    const { currentUser } = this.props;
+    const { addStart, addProducts, addCart, addOrder } = this.state;
+    const { currentUser, favoritesClothes, cartClothes, orderClothes } =
+      this.props;
 
     return (
       <div className="bg-white max-w-screen-lg flex mx-auto">
         <AccountNav
-          onClickProducts={this.handleClickProducts}
+          onClickFavorites={this.handleClickFavorites}
           onClickCart={this.handleClickCart}
           onClickOrder={this.handleClickOrder}
         />
@@ -109,7 +91,7 @@ export default class AccountPage extends Component {
           <MyFavorites
             favoritesClothes={favoritesClothes}
             currentUser={currentUser}
-            handleChangeState={this.handleClickProducts}
+            handleChangeState={this.handleClickFavorites}
           />
         )}
         {addCart && (
@@ -136,3 +118,13 @@ AccountPage.propTypes = {
     username: PropTypes.string,
   }),
 };
+
+const mapStateToProps = (state) => {
+  return {
+    favoritesClothes: state.favoritesClothes.data,
+    cartClothes: state.cartClothes.data,
+    orderClothes: state.orderClothes.data,
+  };
+};
+
+export default connect(mapStateToProps)(AccountPage);

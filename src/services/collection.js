@@ -34,7 +34,7 @@ export default class Collection {
 
   async updateDocument(id, data) {
     return await updateDoc(doc(db, this.collectionName, id), data);
-  }
+  } 
 
   async deleteDocument(id) {
     return await deleteDoc(doc(db, this.collectionName, id));
