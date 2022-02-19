@@ -27,7 +27,7 @@ export class App extends Component {
     };
   }
 
-  handleChangeState = () => {    
+  handleChangeState = () => {
     const { dispatch } = this.props;
 
     dispatch(getCollectionDress());
@@ -37,16 +37,16 @@ export class App extends Component {
     dispatch(getCollectionSport());
 
     dispatch(getCollectionShirts());
-  };  
+  };
 
   componentDidMount() {
     const { dispatch } = this.props;
-    onAuthStateChanged(auth, (user) => {      
-      dispatch(setUser(user));      
+    onAuthStateChanged(auth, (user) => {
+      dispatch(setUser(user));
     });
 
     this.setState({
-        isUserLoading: false,
+      isUserLoading: false,
     });
 
     this.handleChangeState();
