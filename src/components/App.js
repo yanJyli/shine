@@ -42,7 +42,7 @@ export class App extends Component {
   componentDidMount() {
     const { dispatch } = this.props;
     onAuthStateChanged(auth, (user) => {
-      dispatch(setUser(user));
+      dispatch(setUser(user) );
     });
 
     this.setState({
